@@ -3,14 +3,15 @@ import asyncio
 from openai import AsyncOpenAI
 from PyPDF2 import PdfReader
 import docx
+import os
+import dotenv
+dotenv.load_dotenv()
 
-try:
-    client = AsyncOpenAI(
-        api_key="sk-t5HlaAiei_IkDG52uq9PEQ",
-        base_url="https://litellm.unknownland.org/"
-    )
-except:
-    client = AsyncOpenAI()
+
+client = AsyncOpenAI(
+    api_key=os.getenv("OPENAI_API_KEY"),
+    base_url=os.getenv("OPENAI_BASE_URL")
+)
 
 # Function to extract text from uploaded files
 
